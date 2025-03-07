@@ -26,6 +26,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
 }
 
+app.UseCors(opt => opt.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200", "http://localhost:4200"));
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
