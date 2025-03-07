@@ -15,4 +15,6 @@ public class AppUser
     public required DateTime DateOfBirth { get; set; }
     public required DateTime Created { get; set; } = DateTime.Now;
     public required DateTime LastActive { get; set; } = DateTime.Now;
+    public required byte[] PasswordHash { get; set; }
+    public required byte[] PasswordSalt { get; set; }
 }
