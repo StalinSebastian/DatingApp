@@ -1,0 +1,92 @@
+<nav
+  class="navbar fixed-top navbar-expand-md bg-primary bg-body-tertiary"
+  data-bs-theme="dark"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Dating App</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      @if(!isAuthenticated){
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Matches</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Lists</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Messages</a>
+        </li>
+      </ul>
+      } @else {
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Matches</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Lists</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Messages</a>
+        </li>
+      </ul>
+      } @if(!isAuthenticated){
+      <form #loginForm="ngForm" (ngSubmit)="login()" class="d-flex">
+        <input
+          class="form-control me-2"
+          placeholder="Username"
+          aria-label="username"
+          name="username"
+          [(ngModel)]="model.username"
+        />
+        <input
+          class="form-control me-2"
+          placeholder="Password"
+          aria-label="password"
+          name="password"
+          [(ngModel)]="model.password"
+        />
+        <button class="btn btn-secondary" type="submit">Login</button>
+      </form>
+      } @else{
+      <div class="dropdown">
+        <a
+          class="btn dropdown-toggle text-light"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Welcome user
+        </a>
+        <div class="dropdown-menu">
+          <a href="profile" class="dropdown-item">Edit Profile</a>
+          <a href="logout" class="dropdown-item">Logout</a>
+        </div>
+      </div>
+      } @if(!isAuthenticated){
+      <div class="dropdown px-2">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Login
+        </button>
+        <div class="dropdown-menu dropdown-menu-end px-4">
+          <app-login></app-login>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</nav>
