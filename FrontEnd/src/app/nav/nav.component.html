@@ -59,34 +59,64 @@
         <button class="btn btn-secondary" type="submit">Login</button>
       </form>
       } @else{
-      <div class="dropdown">
+      <div id="user-menu" dropdown class="btn-group px-2 float-end">
         <a
+        id="button-user-menu"
+          dropdownToggle
           class="btn dropdown-toggle text-light"
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          Welcome user
+          Welcome {{ userFullName }}
         </a>
-        <div class="dropdown-menu">
+        <div id="dropdown-user-menu" *dropdownMenu class="dropdown-menu">
           <a href="profile" class="dropdown-item">Edit Profile</a>
-          <a href="logout" class="dropdown-item">Logout</a>
+          <div class="dropdown-divider"></div>
+          <a (click)="logout()" href="#" class="dropdown-item">Logout</a>
         </div>
       </div>
-      } @if(!isAuthenticated){
-      <div class="dropdown px-2">
+      }
+      <!-- @if(!isAuthenticated){
+      <div dropdown class="btn-group px-2 float-end">
         <button
+          id="button-login-slider"
+          dropdownToggle
           class="btn btn-secondary dropdown-toggle"
           type="button"
           data-bs-toggle="dropdown"
+          aria-controls="dropdown-basic"
           aria-expanded="false"
         >
           Login
         </button>
-        <div class="dropdown-menu dropdown-menu-end px-4">
+        <div
+          id="dropdown-login-slider"
+          *dropdownMenu
+          class="dropdown-menu dropdown-menu-end px-4"
+          role="menu"
+          aria-labelledby="button-basic"
+        >
           <app-login></app-login>
         </div>
       </div>
-      }
+      } @else {
+        <div id="user-menu" dropdown class="btn-group px-2 float-end">
+          <a
+          id="button-user-menu"
+            dropdownToggle
+            class="btn dropdown-toggle text-light"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Welcome {{ model.fullName }}
+          </a>
+          <div id="dropdown-user-menu" *dropdownMenu class="dropdown-menu">
+            <a href="profile" class="dropdown-item">Edit Profile</a>
+            <div class="dropdown-divider"></div>
+            <a href="logout" class="dropdown-item">Logout</a>
+          </div>
+        </div>
+      } -->
     </div>
   </div>
 </nav>

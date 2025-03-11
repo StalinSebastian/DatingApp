@@ -482,5 +482,10 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
-API/Dating.db-wal
-API/Dating.db-shm
+SQLite DB files
+Dating.db-wal
+Dating.db-shm
+docker/data
+docker/certs
+
+package-lock.json

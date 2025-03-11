@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/front-end",
+            "outputPath": "dist/dating-app",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -37,7 +37,6 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
@@ -72,6 +71,7 @@
         },
         "serve": {
           "options": {
+            "port": 3000,
             "ssl": true,
             "sslKey": "./ssl/localhost-key.pem",
             "sslCert": "./ssl/localhost.pem"

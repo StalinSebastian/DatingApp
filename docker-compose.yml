@@ -1,6 +1,5 @@
-version: '3.8'
 services:
-  dotnet-api:
+  api:
     build:
       context: .  # Use the solution root as build context
       dockerfile: ./docker/build/api/Dockerfile
@@ -10,19 +9,22 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:
-      - ./docker/deploy/api:/app
+      - ./docker/certs:/etc/nginx/certs:ro
+      - ./docker/data/api-data:/app/data
+      - ./docker/data/api-keys:/root/.aspnet/DataProtection-Keys
 
-  angular-app:
+  app:
     build:
       context: ./ # Use the solution root as build context
       dockerfile: ./docker/build/app/Dockerfile
     ports:
-      - "4200:4200"
+      - "4200:443"
     volumes:
       - ./FrontEnd:/app
       - /app/node_modules
+      - ./docker/certs:/etc/nginx/certs:ro
     depends_on:
-      - dotnet-api
+      - api
 
 networks:
   default:
