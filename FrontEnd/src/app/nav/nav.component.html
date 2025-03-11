@@ -16,7 +16,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      @if(!isAuthenticated){
+      @if(!accountService.currentUser()){
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">Matches</a>
@@ -40,14 +40,14 @@
           <a class="nav-link" href="#">Messages</a>
         </li>
       </ul>
-      } @if(!isAuthenticated){
+      } @if(!accountService.currentUser()){
       <form #loginForm="ngForm" (ngSubmit)="login()" class="d-flex">
         <input
           class="form-control me-2"
           placeholder="Username"
           aria-label="username"
           name="username"
-          [(ngModel)]="model.username"
+          [(ngModel)]="model.userName"
         />
         <input
           class="form-control me-2"
@@ -67,7 +67,7 @@
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          Welcome {{ userFullName }}
+          Welcome {{ accountService.currentUser()?.firstName ?? 'User' }}
         </a>
         <div id="dropdown-user-menu" *dropdownMenu class="dropdown-menu">
           <a href="profile" class="dropdown-item">Edit Profile</a>

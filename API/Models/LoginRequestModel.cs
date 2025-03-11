@@ -5,7 +5,7 @@ namespace API.Models
     public class LoginRequestModel
     {
         [MaxLength(50)]
-        public required string Username { get; set; }
+        public required string UserName { get; set; }
         [MinLength(3), MaxLength(12)]
         public required string Password { get; set; }
     }

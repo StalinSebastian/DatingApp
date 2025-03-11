@@ -10,7 +10,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:
       - ./docker/certs:/etc/nginx/certs:ro
-      - ./docker/data/api-data:/app/data
+      #- ./docker/data/api-data:/app/data
       - ./docker/data/api-keys:/root/.aspnet/DataProtection-Keys
 
   app:

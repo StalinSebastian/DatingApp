@@ -487,5 +487,5 @@ Dating.db-wal
 Dating.db-shm
 docker/data
 docker/certs
-
+docker/deploy/
 package-lock.json

@@ -1,25 +1,7 @@
 <app-nav></app-nav>
 <main class="main">
-  <div class="content">
-    <h1 class="title">Welcome to {{ title }}!</h1>
-    <table class="users-list">
-      <tr>
-        <th>ID</th>
-        <th>Username</th>
-        <th>Email</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-      </tr>
-      @for (user of users; track user.id) {
-      <tr class="user">
-        <td>{{ user.id }}</td>
-        <td>{{ user.userName }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.firstName }}</td>
-        <td>{{ user.lastName }}</td>
-      </tr>
-      }
-    </table>
+  <div class="content mt-5 pt-5">
+    <app-home />
   </div>
 </main>
 <router-outlet />

@@ -47,7 +47,7 @@ namespace API.Controllers
         public async Task<ActionResult<LoginResponseModel>> Login(LoginRequestModel model)
         {
             var appUser = await context.Users.FirstOrDefaultAsync(x =>
-                                x.UserName.ToLower() == model.Username.ToLower());
+                                x.UserName.ToLower() == model.UserName.ToLower());
 
             if (appUser == null)
             {

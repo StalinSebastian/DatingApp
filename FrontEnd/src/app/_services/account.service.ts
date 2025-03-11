@@ -15,11 +15,12 @@ export class AccountService {
 
   login(model: any) {
     return this.http.post<User>(`${this.apiUrl}account/login`, model).pipe(
-      map( user => {
-        if(user) {
+      map(user => {
+        if (user) {
           localStorage.setItem('user', JSON.stringify(user));
           this.currentUser.set(user);
         }
+        return user;
       })
     )
   }
@@ -30,6 +31,14 @@ export class AccountService {
   }
 
   register(model: any) {
-    return this.http.post(`${this.apiUrl}account/register`, model);
+    return this.http.post<User>(`${this.apiUrl}account/register`, model).pipe(
+      map(user => {
+        if (user) {
+          localStorage.setItem('user', JSON.stringify(user));
+          this.currentUser.set(user);
+        }
+        return user;
+      })
+    );
   }
 }
