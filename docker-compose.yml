@@ -1,11 +1,23 @@
 services:
+  sql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    restart: always
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Password@1"
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./docker/data/mssql:/var/opt/mssql
+
   api:
+    #image: acrsimpledatingapp.azurecr.io/api:latest
     build:
       context: .  # Use the solution root as build context
       dockerfile: ./docker/build/api/Dockerfile
     ports:
-      - "5000:5000"
-      - "5001:5001"
+      - "5000:80"
+      - "5001:443"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:
@@ -14,11 +26,12 @@ services:
       - ./docker/data/api-keys:/root/.aspnet/DataProtection-Keys
 
   app:
+    #image: acrsimpledatingapp.azurecr.io/app:latest
     build:
       context: ./ # Use the solution root as build context
       dockerfile: ./docker/build/app/Dockerfile
     ports:
-      - "4200:443"
+      - "4200:80"
     volumes:
       - ./FrontEnd:/app
       - /app/node_modules

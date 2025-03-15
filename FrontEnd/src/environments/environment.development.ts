@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  serviceApiEndpoint: 'https://localhost:5001/api/'
+  serviceApiEndpoint: 'https://datingapp-api.azurewebsites.net/api/'
 };

@@ -14,7 +14,7 @@ export class LoginComponent {
   http = inject(HttpClient);
   apiUrl = environment.serviceApiEndpoint;
   loginInfo: any = {
-    username: '',
+    userName: '',
     password: ''
   }
   loginError: string = '';

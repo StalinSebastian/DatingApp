@@ -1,0 +1,13 @@
+# Define Variables
+$acrResourceGroup = "DatingAppContainerRegistryResourceGroup"
+$resourceGroup = "DatingAppResourceGroup"
+$acrName = "acrsimpledatingapp"
+$servicePlan = "DatingAppServicePlan"
+$location = "Southeast Asia"
+$apiApp = "datingapp-api"
+$frontendApp = "datingapp-frontend"
+$dbServerName = "mssql-datingapp"
+$dbServer = "$dbServerName.database.windows.net"
+$dbName = "DatingDB"
+$dbUser = "adminuser"
+$dbPassword = "Password@1"

@@ -17,7 +17,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/dating-app",
+            "outputPath": {
+              "base": "dist/dating-app",
+              "browser": ""
+            },
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -36,8 +39,7 @@
               "node_modules/font-awesome/css/font-awesome.min.css",
               "src/styles.scss"
             ],
-            "scripts": [
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -53,7 +55,13 @@
                   "maximumError": "4kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.production.ts"
+                }
+              ]
             },
             "development": {
               "optimization": false,
@@ -70,25 +78,27 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "options": {
-            "port": 3000,
-            "ssl": true,
-            "sslKey": "./ssl/localhost-key.pem",
-            "sslCert": "./ssl/localhost.pem"
-          },
+          "options": {},
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
               "buildTarget": "FrontEnd:build:production"
             },
             "development": {
+              "port": 3000,
+              "ssl": true,
+              "sslKey": "./ssl/localhost-key.pem",
+              "sslCert": "./ssl/localhost.pem",
               "buildTarget": "FrontEnd:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "production"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n"
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "client:build"
+          }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",

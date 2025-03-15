@@ -15,7 +15,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 })
 export class NavComponent {
   accountService = inject(AccountService);
-  model: any = { username: '', firstName: '' }
+  model: any = { userName: '', firstName: '' }
 
   login() {
     console.log(this.model);
