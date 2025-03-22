@@ -1,0 +1,48 @@
+name: Trigger auto deployment for learncontinerapps
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ master ]
+    paths:
+    - '**'
+    - '.github/workflows/learncontinerapps-AutoDeployTrigger-c0ff4601-316a-4457-82eb-69e2d960de93.yml'
+
+  # Allow manual trigger 
+  workflow_dispatch:      
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions: 
+      id-token: write #This is required for requesting the OIDC JWT Token
+      contents: read #Required when GH token is used to authenticate with private repo
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.LEARNCONTINERAPPS_AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.LEARNCONTINERAPPS_AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.LEARNCONTINERAPPS_AZURE_SUBSCRIPTION_ID }}
+
+      - name: Build and push container image to registry
+        uses: azure/container-apps-deploy-action@v2
+        with:
+          appSourcePath: ${{ github.workspace }}
+          _dockerfilePathKey_: _dockerfilePath_
+          registryUrl: 
+          registryUsername: ${{ secrets.LEARNCONTINERAPPS_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.LEARNCONTINERAPPS_REGISTRY_PASSWORD }}
+          containerAppName: learncontinerapps
+          resourceGroup: group_container_apps
+          imageToBuild: default/[parameters('containerAppName')]:${{ github.sha }}
+          _buildArgumentsKey_: |
+            _buildArgumentsValues_
+
+
